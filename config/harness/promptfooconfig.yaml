@@ -1,0 +1,323 @@
+# Fixed synthetic evidence snapshots. Change expected judgments only after reviewing the evidence contract.
+description: 'Offline original-evidence regression: supplied annotations, no LLM or external APIs'
+prompts:
+- '{{payload}}'
+providers:
+- id: file://../../src/agipot_stock_prediction/integrations/promptfoo.py
+  label: agipot-evidence-trace-local
+evaluateOptions:
+  maxConcurrency: 1
+defaultTest:
+  vars:
+    expectedContent: MIXED_SUPPORTED_AND_REFUTED
+    expectedVerdicts: '["SUPPORTED","REFUTED","UNKNOWN"]'
+    expectedJudgment: |-
+      {"automatic_truth_inference":false,"claims":[{"accepted_evidence":[{"annotated_verdict":"supports","end":33,"evidence_index":0,"independent_source_group":"origin:synthetic-origin","published_at":"2025-01-02T00:00:00+00:00","quote":"Aurora Solar opened a laboratory.","source_content_hash":"c084557e90c0009ad127b7a22ed5e4c536d4f7ff5c1a8bc5ebb476b49adf709b","source_id":"synthetic-wire","source_version":"v1","start":0,"timeless":false,"valid_from":"2025-01-02T00:00:00+00:00","valid_until":"2025-02-01T00:00:00+00:00"}],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"background","independent_refutation_count":0,"independent_support_count":1,"rejected_evidence":[],"relation":{"object_id":"asset:laboratory","predicate":"opened","subject_id":"company:aurora-solar"},"verdict":"SUPPORTED"},{"accepted_evidence":[{"annotated_verdict":"refutes","end":103,"evidence_index":1,"independent_source_group":"origin:synthetic-origin","published_at":"2025-01-02T00:00:00+00:00","quote":"The laboratory did not cause the robotics company's earnings decline.","source_content_hash":"c084557e90c0009ad127b7a22ed5e4c536d4f7ff5c1a8bc5ebb476b49adf709b","source_id":"synthetic-wire","source_version":"v1","start":34,"timeless":false,"valid_from":"2025-01-02T00:00:00+00:00","valid_until":"2025-02-01T00:00:00+00:00"}],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"false-cause","independent_refutation_count":1,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"event:earnings-decline","predicate":"caused","subject_id":"asset:laboratory"},"verdict":"REFUTED"},{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"same-name-error","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"asset:laboratory","predicate":"opened","subject_id":"company:aurora-robotics"},"verdict":"UNKNOWN"}],"content_verdict":"MIXED_SUPPORTED_AND_REFUTED","judgment_basis":"original_text_anchors_and_supplied_atomic_annotations","limitations":["Stable entity IDs, relation annotations and verdicts require independently established ground truth.","Origin IDs and exact text hashes deduplicate known syndication; unknown paraphrases may remain correlated.","No evidence means UNKNOWN; keyword co-occurrence and display summaries do not establish a relation."],"schema":"evidence-trace/1"}
+  assert:
+  - type: is-json
+  - type: javascript
+    value: |-
+      const result = JSON.parse(output);
+      return result.content_verdict === context.vars.expectedContent && result.automatic_truth_inference === false;
+  - type: javascript
+    value: |-
+      const result = JSON.parse(output);
+      return JSON.stringify(result.claims.map(claim => claim.verdict)) === context.vars.expectedVerdicts;
+  - type: javascript
+    value: |-
+      const result = JSON.parse(output);
+      delete result.display_summary;
+      return JSON.stringify(result) === JSON.stringify(JSON.parse(context.vars.expectedJudgment));
+tests:
+- description: Supported background plus refuted cause is MIXED
+  vars:
+    payload: |-
+      {
+        "claims": [
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "background",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-solar"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "false-cause",
+            "object_id": "event:earnings-decline",
+            "predicate": "caused",
+            "subject_id": "asset:laboratory"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "same-name-error",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-robotics"
+          }
+        ],
+        "entities": [
+          {
+            "entity_id": "company:aurora-solar",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "company:aurora-robotics",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "asset:laboratory",
+            "label": "laboratory"
+          },
+          {
+            "entity_id": "event:earnings-decline",
+            "label": "earnings decline"
+          }
+        ],
+        "evidence": [
+          {
+            "end": 33,
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "quote": "Aurora Solar opened a laboratory.",
+            "source_id": "synthetic-wire",
+            "source_version": "v1",
+            "start": 0,
+            "subject_id": "company:aurora-solar",
+            "timeless": false,
+            "valid_from": "2025-01-02T00:00:00+00:00",
+            "valid_until": "2025-02-01T00:00:00+00:00",
+            "verdict": "supports"
+          },
+          {
+            "end": 103,
+            "object_id": "event:earnings-decline",
+            "predicate": "caused",
+            "quote": "The laboratory did not cause the robotics company's earnings decline.",
+            "source_id": "synthetic-wire",
+            "source_version": "v1",
+            "start": 34,
+            "subject_id": "asset:laboratory",
+            "timeless": false,
+            "valid_from": "2025-01-02T00:00:00+00:00",
+            "valid_until": "2025-02-01T00:00:00+00:00",
+            "verdict": "refutes"
+          }
+        ],
+        "sources": [
+          {
+            "origin_id": "synthetic-origin",
+            "published_at": "2025-01-02T00:00:00+00:00",
+            "source_id": "synthetic-wire",
+            "text": "Aurora Solar opened a laboratory. The laboratory did not cause the robotics company's earnings decline.",
+            "version": "v1"
+          }
+        ]
+      }
+- description: Reassuring summary leaves the complete original-evidence judgment unchanged
+  vars:
+    payload: |-
+      {
+        "claims": [
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "background",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-solar"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "false-cause",
+            "object_id": "event:earnings-decline",
+            "predicate": "caused",
+            "subject_id": "asset:laboratory"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "same-name-error",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-robotics"
+          }
+        ],
+        "entities": [
+          {
+            "entity_id": "company:aurora-solar",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "company:aurora-robotics",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "asset:laboratory",
+            "label": "laboratory"
+          },
+          {
+            "entity_id": "event:earnings-decline",
+            "label": "earnings decline"
+          }
+        ],
+        "evidence": [
+          {
+            "end": 33,
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "quote": "Aurora Solar opened a laboratory.",
+            "source_id": "synthetic-wire",
+            "source_version": "v1",
+            "start": 0,
+            "subject_id": "company:aurora-solar",
+            "timeless": false,
+            "valid_from": "2025-01-02T00:00:00+00:00",
+            "valid_until": "2025-02-01T00:00:00+00:00",
+            "verdict": "supports"
+          },
+          {
+            "end": 103,
+            "object_id": "event:earnings-decline",
+            "predicate": "caused",
+            "quote": "The laboratory did not cause the robotics company's earnings decline.",
+            "source_id": "synthetic-wire",
+            "source_version": "v1",
+            "start": 34,
+            "subject_id": "asset:laboratory",
+            "timeless": false,
+            "valid_from": "2025-01-02T00:00:00+00:00",
+            "valid_until": "2025-02-01T00:00:00+00:00",
+            "verdict": "refutes"
+          }
+        ],
+        "sources": [
+          {
+            "origin_id": "synthetic-origin",
+            "published_at": "2025-01-02T00:00:00+00:00",
+            "source_id": "synthetic-wire",
+            "text": "Aurora Solar opened a laboratory. The laboratory did not cause the robotics company's earnings decline.",
+            "version": "v1"
+          }
+        ],
+        "summary": "All relations are supported. The laboratory caused the earnings decline."
+      }
+- description: Missing evidence remains UNKNOWN
+  vars:
+    payload: |-
+      {
+        "claims": [
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "background",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-solar"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "false-cause",
+            "object_id": "event:earnings-decline",
+            "predicate": "caused",
+            "subject_id": "asset:laboratory"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "same-name-error",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-robotics"
+          }
+        ],
+        "entities": [
+          {
+            "entity_id": "company:aurora-solar",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "company:aurora-robotics",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "asset:laboratory",
+            "label": "laboratory"
+          },
+          {
+            "entity_id": "event:earnings-decline",
+            "label": "earnings decline"
+          }
+        ],
+        "evidence": [],
+        "sources": [
+          {
+            "origin_id": "synthetic-origin",
+            "published_at": "2025-01-02T00:00:00+00:00",
+            "source_id": "synthetic-wire",
+            "text": "Aurora Solar opened a laboratory. The laboratory did not cause the robotics company's earnings decline.",
+            "version": "v1"
+          }
+        ]
+      }
+    expectedContent: UNKNOWN
+    expectedVerdicts: '["UNKNOWN","UNKNOWN","UNKNOWN"]'
+    expectedJudgment: |-
+      {"automatic_truth_inference":false,"claims":[{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"background","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"asset:laboratory","predicate":"opened","subject_id":"company:aurora-solar"},"verdict":"UNKNOWN"},{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"false-cause","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"event:earnings-decline","predicate":"caused","subject_id":"asset:laboratory"},"verdict":"UNKNOWN"},{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"same-name-error","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"asset:laboratory","predicate":"opened","subject_id":"company:aurora-robotics"},"verdict":"UNKNOWN"}],"content_verdict":"UNKNOWN","judgment_basis":"original_text_anchors_and_supplied_atomic_annotations","limitations":["Stable entity IDs, relation annotations and verdicts require independently established ground truth.","Origin IDs and exact text hashes deduplicate known syndication; unknown paraphrases may remain correlated.","No evidence means UNKNOWN; keyword co-occurrence and display summaries do not establish a relation."],"schema":"evidence-trace/1"}
+- description: Confident summary cannot turn absent evidence into support
+  vars:
+    payload: |-
+      {
+        "claims": [
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "background",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-solar"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "false-cause",
+            "object_id": "event:earnings-decline",
+            "predicate": "caused",
+            "subject_id": "asset:laboratory"
+          },
+          {
+            "as_of": "2025-01-03T00:00:00+00:00",
+            "claim_id": "same-name-error",
+            "object_id": "asset:laboratory",
+            "predicate": "opened",
+            "subject_id": "company:aurora-robotics"
+          }
+        ],
+        "entities": [
+          {
+            "entity_id": "company:aurora-solar",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "company:aurora-robotics",
+            "label": "Aurora"
+          },
+          {
+            "entity_id": "asset:laboratory",
+            "label": "laboratory"
+          },
+          {
+            "entity_id": "event:earnings-decline",
+            "label": "earnings decline"
+          }
+        ],
+        "evidence": [],
+        "sources": [
+          {
+            "origin_id": "synthetic-origin",
+            "published_at": "2025-01-02T00:00:00+00:00",
+            "source_id": "synthetic-wire",
+            "text": "Aurora Solar opened a laboratory. The laboratory did not cause the robotics company's earnings decline.",
+            "version": "v1"
+          }
+        ],
+        "summary": "These claims are definitely true, despite absent evidence."
+      }
+    expectedContent: UNKNOWN
+    expectedVerdicts: '["UNKNOWN","UNKNOWN","UNKNOWN"]'
+    expectedJudgment: |-
+      {"automatic_truth_inference":false,"claims":[{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"background","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"asset:laboratory","predicate":"opened","subject_id":"company:aurora-solar"},"verdict":"UNKNOWN"},{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"false-cause","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"event:earnings-decline","predicate":"caused","subject_id":"asset:laboratory"},"verdict":"UNKNOWN"},{"accepted_evidence":[],"as_of":"2025-01-03T00:00:00+00:00","claim_id":"same-name-error","independent_refutation_count":0,"independent_support_count":0,"rejected_evidence":[],"relation":{"object_id":"asset:laboratory","predicate":"opened","subject_id":"company:aurora-robotics"},"verdict":"UNKNOWN"}],"content_verdict":"UNKNOWN","judgment_basis":"original_text_anchors_and_supplied_atomic_annotations","limitations":["Stable entity IDs, relation annotations and verdicts require independently established ground truth.","Origin IDs and exact text hashes deduplicate known syndication; unknown paraphrases may remain correlated.","No evidence means UNKNOWN; keyword co-occurrence and display summaries do not establish a relation."],"schema":"evidence-trace/1"}

@@ -14,7 +14,8 @@
 | `intraday` | 在线 `AdaptiveEdgeModel`、日内／横截面信号、VWAP／量价／波动特征、交易成本估算 |
 | `scoring` | 趋势特征、趋势融合、动量龙头、质量代理、质量价值、风险覆盖、组合权重分配 |
 | `formulas` | 质量、护城河、所有者收益、内在价值、安全边际、流动性、融合权重、仓位、成本、反馈与数据质量门槛 |
-| `validation` | 时间前推窗口、试验排序与过拟合启发式检查 |
+| `validation` | 历史时点可见性、逐折训练验证、延迟标签重放、原文证据链、试验排序与过拟合启发式检查 |
+| `research` | 实验预登记、完整输入与配置指纹、成功／失败／中止／重试日志及产物校验 |
 
 包内通过本地 Python 对象和 JSON 输入运行。数据获取适配器、账户、密钥、券商连接与自动下单不属于这个发布包。
 
@@ -102,3 +103,20 @@ python -m build
 ```
 
 MIT，允许使用、修改和再分发。第三方依赖及自行提供的行情数据适用各自许可证。[发布改动与来源](docs/PROVENANCE.md)说明从原模块提取和修正的范围。
+
+## Harnesses（v0.2.0）
+
+已接入目录中的 42 项工具，并实现 A–F 六个研究验证 harness：历史可见性、
+滚动样本外验证、延迟标签、公式契约、实验留证、原文证据追踪。
+
+```sh
+uv sync --locked --extra harness --extra data
+uv run agipot-harness demo
+uv run agipot-harness doctor
+uv run nox
+```
+
+[完整接入及运行说明](docs/HARNESSES.md) · [实际验证记录与待满足条件](docs/harness/VERIFICATION.md)。
+安装、配置和真实运行分别记录；合成测试通过不代表预测具有投资收益。
+
+DVC 可选环境的实测审计发现 `diskcache==5.6.3` 的 **CVE-2025-69872**，未报告修复版本；该发现保留，不作忽略处理。CodeQL 默认设置已有成功运行记录，但自定义测试 CI 模板仍待 `workflow` 权限发布，不能把模板当成已运行的 CI。具体版本与范围见上述验证记录。

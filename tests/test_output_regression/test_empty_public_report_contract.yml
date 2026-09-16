@@ -1,0 +1,10 @@
+complete_index: null
+eligible:
+  momentum: false
+  trend: false
+  value: false
+intraday:
+  status: NOT_PROVIDED
+research_only: true
+schema_version: agipot-stock-prediction/1
+symbol: SYNTH

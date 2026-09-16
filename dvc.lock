@@ -1,0 +1,24 @@
+schema: '2.0'
+stages:
+  harness_evidence:
+    cmd: python -m agipot_stock_prediction.harnesses.cli demo
+    deps:
+    - path: pyproject.toml
+      hash: md5
+      md5: 310f9d04624fa8360cfaea8be34c9f03
+      size: 2665
+    - path: src/agipot_stock_prediction
+      hash: md5
+      md5: 3f2d64e8f2a9c0697c0104a06daca6d7.dir
+      size: 378214
+      nfiles: 79
+    - path: uv.lock
+      hash: md5
+      md5: 83720a14c8a6ebe4142f1effc3f60eab
+      size: 1603831
+    outs:
+    - path: reports/harness-demo
+      hash: md5
+      md5: 044d527c4eed00bc99bec8f321ed409d.dir
+      size: 333452
+      nfiles: 52

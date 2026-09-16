@@ -1,7 +1,12 @@
-include LICENSE README.md CHANGELOG.md CONTRIBUTING.md
+include LICENSE README.md CHANGELOG.md CONTRIBUTING.md AGENTS.md uv.lock noxfile.py asv.conf.json dvc.yaml package.json package-lock.json
+recursive-include config *.json *.yaml
+recursive-include scripts *.py
+recursive-include benchmarks *.py
+recursive-include .specify *
+include .pre-commit-config.yaml .dvc/config .dvcignore dvc.lock
 recursive-include docs *.md *.json *.yml
 recursive-include examples *.py
-recursive-include tests *.py
+recursive-include tests *.py *.yml
 recursive-include src *.json *.md
 global-exclude *.py[cod]
 global-exclude __pycache__

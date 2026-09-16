@@ -1,0 +1,11 @@
+stages:
+  harness_evidence:
+    cmd: python -m agipot_stock_prediction.harnesses.cli demo
+    deps:
+      - src/agipot_stock_prediction
+      - pyproject.toml
+      - uv.lock
+    outs:
+      - reports/harness-demo:
+          cache: false
+          persist: true

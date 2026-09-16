@@ -307,7 +307,7 @@ def _current_regime_edge(rows: list[dict[str, Any]]) -> dict[str, Any]:
         return {
             "status": "BLOCKED",
             "reason": "INSUFFICIENT_HISTORY_FOR_OOS",
-            "oos_pass": False,
+            "oos_pass": False,  # Boolean OOS result, not a password.  # nosec B105
             "horizons": {},
         }
     split = int(len(closes) * 0.70)
@@ -321,7 +321,7 @@ def _current_regime_edge(rows: list[dict[str, Any]]) -> dict[str, Any]:
     low_vol = _quantile(rolling_vols, 0.33)
     high_vol = _quantile(rolling_vols, 0.67)
     if low_vol is None or high_vol is None:
-        return {"status": "BLOCKED", "reason": "TRAINING_VOLATILITY_UNAVAILABLE", "oos_pass": False, "horizons": {}}
+        return {"status": "BLOCKED", "reason": "TRAINING_VOLATILITY_UNAVAILABLE", "oos_pass": False, "horizons": {}}  # Boolean OOS result.  # nosec B105
 
     def regime_at(index: int) -> tuple[bool, bool, str, str] | None:
         ma50 = _sma(closes, 50, index)
@@ -336,7 +336,7 @@ def _current_regime_edge(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
     current = regime_at(len(closes) - 1)
     if current is None:
-        return {"status": "BLOCKED", "reason": "CURRENT_REGIME_UNAVAILABLE", "oos_pass": False, "horizons": {}}
+        return {"status": "BLOCKED", "reason": "CURRENT_REGIME_UNAVAILABLE", "oos_pass": False, "horizons": {}}  # Boolean OOS result.  # nosec B105
     horizons: dict[str, Any] = {}
     passes = []
     for horizon in (5, 20):

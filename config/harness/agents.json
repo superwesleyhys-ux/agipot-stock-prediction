@@ -1,0 +1,59 @@
+{
+  "superpowers": {
+    "source": "https://github.com/obra/superpowers.git",
+    "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+    "kind": "skills",
+    "path": ".harness/tools/superpowers"
+  },
+  "gstack": {
+    "source": "https://github.com/garrytan/gstack.git",
+    "revision": "a6b3a57512ca6d5c6aa5b68f74f736195021f96e",
+    "kind": "skills",
+    "path": ".harness/tools/gstack"
+  },
+  "spec-kit": {
+    "packages": [
+      "specify-cli==1.0.7"
+    ],
+    "kind": "skills",
+    "entrypoint": "specify"
+  },
+  "aider": {
+    "packages": [
+      "aider-chat==0.86.2"
+    ],
+    "kind": "cli",
+    "entrypoint": "aider",
+    "task_argument": "--message-file",
+    "requires": "model credentials configured for Aider"
+  },
+  "mini-swe-agent": {
+    "packages": [
+      "mini-swe-agent==2.4.6"
+    ],
+    "kind": "cli",
+    "entrypoint": "mini",
+    "task_argument": "-t",
+    "requires": "model credentials configured for mini-SWE-agent"
+  },
+  "openhands": {
+    "packages": [
+      "openhands-sdk==1.48.0",
+      "openhands-tools==1.48.0"
+    ],
+    "kind": "sdk",
+    "entrypoint": "scripts/openhands_task.py",
+    "requires": "LLM_MODEL and LLM_API_KEY"
+  },
+  "rd-agent": {
+    "packages": [
+      "rdagent==0.8.0",
+      "pydantic-ai-slim[mcp,openai,prefect]==1.107.5",
+      "mcp==1.30.0"
+    ],
+    "compatibility": "RD-Agent 0.8.0 imports MCPServerStreamableHTTP and RequestContext from the v1 APIs; pydantic-ai-slim 2.x and mcp 2.x remove them.",
+    "kind": "cli",
+    "entrypoint": "rdagent",
+    "requires": "model credentials; use the fin_factor or fin_model command explicitly"
+  }
+}

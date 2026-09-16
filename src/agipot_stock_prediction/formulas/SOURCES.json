@@ -1,0 +1,138 @@
+[
+  {
+    "source": "backend/app/services/agentic_quant/formulas/__init__.py",
+    "target": "formulas/__init__.py",
+    "source_sha256": "dd2d4f6652eafcfaae9c2c14d9e0a31c9be8903d48f5c1f239e281dd4b7e3f0d"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/add_reduce_exit.py",
+    "target": "formulas/add_reduce_exit.py",
+    "source_sha256": "62ffc0cb96e7d0e5eefcd11ef369331f887fdd9068367369d3041a0de2e41bff"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/buffett_sleeves.py",
+    "target": "formulas/buffett_sleeves.py",
+    "source_sha256": "05debf04741bc3727e077db4d0c158acaf9ca316626be3719f1957c5952b5122"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/contracts.py",
+    "target": "formulas/contracts.py",
+    "source_sha256": "120bf9ab83d8f35e1d8192b80d99d2edd0ffa2b2e5e3ba366ce06d8937a94377"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/cost.py",
+    "target": "formulas/cost.py",
+    "source_sha256": "5ad7a627f6be2df811679474ec192da5bc665cfc15eee6eee017a64d4160d758"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/data_integrity.py",
+    "target": "formulas/data_integrity.py",
+    "source_sha256": "1ffe6dfeacf1656dd8ad028348eea8746f520f473ce2375e41e64a8e85cc2a25"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/ensemble.py",
+    "target": "formulas/ensemble.py",
+    "source_sha256": "5dc1946fb5b631e1f50b991d0480adeaecf81f7e4e82dc6197c8674f1ecc7f80"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/execution_price.py",
+    "target": "formulas/execution_price.py",
+    "source_sha256": "6b699e1b281ce6235aaa9b91295456bea26b648d8a8a17ac9212f69dcc7835b6"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/feedback.py",
+    "target": "formulas/feedback.py",
+    "source_sha256": "87712373a881b67a2cab5697fb9fd261ddd3dfb47364f8d032dc8dac3e46b254"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/hedging.py",
+    "target": "formulas/hedging.py",
+    "source_sha256": "5f49e4f2e2d40fd4a8c187a837b62bd8ea085ca5e5dfdeb40e4bc487c26707bf"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/intrinsic_value.py",
+    "target": "formulas/intrinsic_value.py",
+    "source_sha256": "86f303fbb4c2df26e414386e96742504c64e71ea170f943274889cc4d657713a"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/kill_switch.py",
+    "target": "formulas/kill_switch.py",
+    "source_sha256": "8771da6d681fbbfcf8f7dce8f052aed98a59b28652422592e6fa638522cfd1dd"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/liquidity.py",
+    "target": "formulas/liquidity.py",
+    "source_sha256": "a6793d557f022ed5d95bdc57b44f1d3c9cd755449f81bc70ffe6b09277df7c0a"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/moat.py",
+    "target": "formulas/moat.py",
+    "source_sha256": "05cc80f73a4fefb17b5d2cab8ca6314966d5f24f33a8052df057cdef283d8959"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/owner_earnings.py",
+    "target": "formulas/owner_earnings.py",
+    "source_sha256": "c44515c0a796dd089330e4a702551f6fd2569b9c1c3fbb29d7dbb069367200a7"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/promotion_formula.py",
+    "target": "formulas/promotion_formula.py",
+    "source_sha256": "d1aedc7587dbbb3724fd370108d298fd06bd377635b680dc0ce2be223d82d824"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/quality.py",
+    "target": "formulas/quality.py",
+    "source_sha256": "1c88596afa20ed9190312343b24d09c9e6ba801a736d9875a3936a82aeb72d4c"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/sizing.py",
+    "target": "formulas/sizing.py",
+    "source_sha256": "bb16493998f5bed55f570cadd6154b324f28edc4d240b4bdccb29fe6adaba556"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/trend_confirmation.py",
+    "target": "formulas/trend_confirmation.py",
+    "source_sha256": "6a5b48df1ba5c15a2a208d5c61b4de5212b563a69e3228d06138eb1dd82acc9b"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/universe.py",
+    "target": "formulas/universe.py",
+    "source_sha256": "895691a674fb5a5b37ee35ac15606cae771bc7ad87a47435e253e5b1d7e9234f"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/formulas/value_trap.py",
+    "target": "formulas/value_trap.py",
+    "source_sha256": "cfeef1bf44ef212ec30d808a282ce49adf4e30fdfd87baf5ce3daefbdf7cda8a"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/autonomy/modes.py",
+    "target": "formulas/modes.py",
+    "source_sha256": "787854d3160339e7aa7653a395830147f27cd9ff09b1ab7aa27f29cde4d7f09f"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/research/cost_model.py",
+    "target": "research/cost_model.py",
+    "source_sha256": "bd2aafaf2b743445cc82c02c28950d83b6363f3f130ffc1d5e31b41c6ee1c989"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/intraday_factory/walk_forward_factory.py",
+    "target": "validation/walk_forward_factory.py",
+    "source_sha256": "97515511718f13d030f14c7353eb49eca9dec68946fd6bf8a473a1ce3d5e01c4"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/intraday_factory/overfit_guard.py",
+    "target": "validation/overfit_guard.py",
+    "source_sha256": "b02399bb30ab25657929c6cd184f0b93e9b0888125d7a7c60ff3bcbb71ee62f2"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/intraday_factory/result_ranker.py",
+    "target": "validation/result_ranker.py",
+    "source_sha256": "b1eaeaf01efc1aae55c8e8ced5dfe4f5bc4592a452e2536d94c1bc48493f7df1"
+  },
+  {
+    "source": "backend/app/services/agentic_quant/research/contracts.py",
+    "target": "research/contracts.py",
+    "source_sha256": "d79987d1990c45c36db07f8a9d945b446fc2e68a4798b9537d73f82a323f7f4e",
+    "note": "Only ResearchDataError and finite_number retained; no data bundles, execution tiers, hashes, or account dependencies."
+  }
+]

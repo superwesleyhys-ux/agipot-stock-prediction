@@ -1,0 +1,15 @@
+{
+  "name": "agipot-stock-prediction-harness",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Local deterministic evidence regressions for the AGIPOT Python research package",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "test:evidence": "promptfoo eval --config config/harness/promptfooconfig.yaml --no-cache --no-progress-bar --output reports/promptfoo-results.json"
+  },
+  "devDependencies": {
+    "promptfoo": "0.122.1"
+  }
+}

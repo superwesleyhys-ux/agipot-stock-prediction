@@ -1,6 +1,6 @@
 """AGIPOT stock research and transparent scoring tools."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 
 def analyze_stock(payload, *, model=None):

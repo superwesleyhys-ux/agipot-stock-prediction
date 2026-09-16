@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agipot-stock-prediction"
-version = "0.1.0"
+version = "0.2.0"
 description = "Transparent stock research: multi-horizon analysis, factor scoring and online edge models"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -16,9 +16,17 @@ classifiers = ["Programming Language :: Python :: 3", "Topic :: Scientific/Engin
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "build>=1.2,<2", "ruff>=0.11,<1"]
+harness = ["pytest>=8,<10", "pytest-cov>=6,<8", "hypothesis>=6,<7", "pytest-regressions>=2,<3", "pytest-benchmark>=5,<6", "nox>=2025.5", "mypy>=1.15,<2", "pre-commit>=4,<5", "mutmut>=3,<4", "build>=1.2,<2", "twine>=6,<7", "bandit>=1.8,<2", "pip-audit>=2.9,<3", "ruff>=0.11,<1"]
+data = ["pandera[pandas]>=0.24,<0.34"]
+research = ["scikit-learn>=1.6,<2", "optuna>=4,<6", "river>=0.22,<0.24", "arch>=7,<9", "mlflow-skinny>=3,<4"]
+
+integrations = ["pandera[pandas]>=0.24,<0.34", "great-expectations>=1.7,<2", "mlflow>=3,<4", "evidently>=0.7,<1", "scikit-learn>=1.6,<2", "sktime>=0.38,<1", "optuna>=4,<6", "river>=0.22,<0.24", "arch>=7,<9", "pyqlib>=0.9.6,<1", "schemathesis>=4,<5", "playwright>=1.51,<2", "testcontainers>=4,<5"]
+performance = ["asv>=0.6,<1", "memray>=1.16,<2"]
+data-versioning = ["dvc>=3,<4"]
 
 [project.scripts]
 agipot-predict = "agipot_stock_prediction.cli:main"
+agipot-harness = "agipot_stock_prediction.harnesses.cli:main"
 
 [project.urls]
 Repository = "https://github.com/superwesleyhys-ux/agipot-stock-prediction"
@@ -29,9 +37,32 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["integration: optional third-party adapter tests", "benchmark: performance measurements"]
 
 [tool.ruff]
 target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E9", "F63", "F7", "F82"]
+select = ["E9", "F63", "F7", "F82", "F841"]
+
+[tool.coverage.run]
+branch = true
+source = ["agipot_stock_prediction"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src/agipot_stock_prediction/research/contracts.py", "src/agipot_stock_prediction/research/cost_model.py"]
+check_untyped_defs = true
+warn_unused_ignores = true
+no_implicit_optional = true
+follow_imports = "silent"
+
+[tool.mutmut]
+source_paths = ["src/"]
+only_mutate = ["src/agipot_stock_prediction/research/cost_model.py"]
+pytest_add_cli_args_test_selection = ["tests/test_formula_properties.py"]
+pytest_add_cli_args = ["-q"]

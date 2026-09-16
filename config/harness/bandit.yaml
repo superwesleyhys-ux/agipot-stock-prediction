@@ -1,0 +1,3 @@
+# Subprocess calls use fixed argv arrays and shell=False; keep call-site review.
+skips: [B404, B603, B607]
+exclude_dirs: [tests, .harness, .venv, .harness-env]

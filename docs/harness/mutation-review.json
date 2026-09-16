@@ -1,0 +1,89 @@
+{
+  "scope": "research/cost_model.py",
+  "total": 119,
+  "killed": 99,
+  "survived": 20,
+  "timed_out": 0,
+  "survivor_review": [
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_9",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_16",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_23",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_30",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_37",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_44",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_48",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_49",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_50",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_53",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_54",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_55",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_67",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_68",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_estimate_transaction_cost__mutmut_69",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_apply_cost_to_return__mutmut_6",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_apply_cost_to_return__mutmut_13",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_apply_cost_to_return__mutmut_17",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_apply_cost_to_return__mutmut_18",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    },
+    {
+      "mutant": "agipot_stock_prediction.research.cost_model.x_apply_cost_to_return__mutmut_19",
+      "review": "error-message-only; arithmetic and rejection behavior unchanged"
+    }
+  ]
+}
